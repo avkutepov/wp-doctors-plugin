@@ -178,7 +178,7 @@ new Doctors_Taxonomy('city', true);
 1. Вызывается функция `doctors_plugin_activation()`
 2. Копируются файлы переводов в централизованную директорию
 3. Временно регистрируется CPT "doctors" для обновления правил маршрутизации
-4. Вызывается `flush_rewrite_rules()` - обновляет .htaccess и правила URL
+4. Вызывается `flush_rewrite_rules()`
 5. После этого страницы `/doctors/` и `/doctors/{slug}/` работают сразу
 
 **При деактивации плагина (`register_deactivation_hook`):**
