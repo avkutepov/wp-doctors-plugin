@@ -1,0 +1,85 @@
+/*
+Theme Name: Doctors Theme
+Text Domain: doctors-theme
+Author: Andrey Kutepov
+Description: Minimal theme for doctors catalog test task
+Version: 1.0
+*/
+
+/* === Doctors archive grid === */
+
+.doctors-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin: 32px 0;
+}
+
+/* Карточка доктора */
+.doctor-card {
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    padding: 16px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Миниатюра */
+.doctor-thumb img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    margin-bottom: 12px;
+}
+
+/* Имя */
+.doctor-name {
+    font-size: 18px;
+    margin: 0 0 8px;
+}
+
+.doctor-name a {
+    text-decoration: none;
+    color: #222;
+}
+
+.doctor-name a:hover {
+    text-decoration: underline;
+}
+
+/* Специализация */
+.doctor-specialization {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 12px;
+}
+
+/* Мета */
+.doctor-meta {
+    font-size: 14px;
+    color: #444;
+    margin-top: auto; /* прижимает к низу карточки */
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+/* Пагинация */
+.doctors-pagination {
+    margin: 32px 0;
+    text-align: center;
+}
+
+@media (max-width: 1024px) {
+    .doctors-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .doctors-grid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,42 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Doctors Plugin\n"
+"Language: ru_RU\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+msgid "Experience"
+msgstr "Стаж"
+
+msgid "years"
+msgstr "лет"
+
+msgid "Price from"
+msgstr "Цена от"
+
+msgid "Rating"
+msgstr "Рейтинг"
+
+msgid "Doctors"
+msgstr "Врачи"
+
+msgid "Doctor"
+msgstr "Врач"
+
+msgid "Specialization"
+msgstr "Специализация"
+
+msgid "Specializations"
+msgstr "Специализации"
+
+msgid "City"
+msgstr "Город"
+
+msgid "Cities"
+msgstr "Города"
+
+msgid "Add New %s"
+msgstr "Добавить новый %s"
+
+msgid "Add New Doctor"
+msgstr "Добавить нового врача"

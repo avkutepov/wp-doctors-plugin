@@ -1,0 +1,71 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Doctors Theme\n"
+"PO-Revision-Date: 2026-01-27 19:30+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru_RU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+# Archive page
+msgid "All specializations"
+msgstr "Все специализации"
+
+msgid "All cities"
+msgstr "Все города"
+
+msgid "Default sorting"
+msgstr "Сортировка по умолчанию"
+
+msgid "By rating"
+msgstr "По рейтингу"
+
+msgid "By price"
+msgstr "По цене"
+
+msgid "By experience"
+msgstr "По опыту"
+
+msgid "Apply filters"
+msgstr "Применить фильтры"
+
+msgid "No doctors found"
+msgstr "Врачи не найдены"
+
+msgid "%s years"
+msgstr "%s лет"
+
+msgid "From %s"
+msgstr "От %s"
+
+msgid "Rating: %s/5"
+msgstr "Рейтинг: %s/5"
+
+# Single page
+msgid "Experience:"
+msgstr "Опыт работы:"
+
+msgid "years"
+msgstr "лет"
+
+msgid "Price from:"
+msgstr "Цена от:"
+
+msgid "Rating:"
+msgstr "Рейтинг:"
+
+msgid "Specialization:"
+msgstr "Специализация:"
+
+msgid "City:"
+msgstr "Город:"
+
+# Pagination
+msgid "Previous"
+msgstr "Назад"
+
+msgid "Next"
+msgstr "Вперёд"
