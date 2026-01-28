@@ -10,14 +10,14 @@ get_header();
     <?php if ( have_posts() ) : ?>
         <?php
         // Санитизация GET параметров
-        $current_specialization = isset( $_GET['specialization'] ) ? sanitize_text_field( $_GET['specialization'] ) : '';
-        $current_city           = isset( $_GET['city'] ) ? sanitize_text_field( $_GET['city'] ) : '';
+        $current_specialization = isset( $_GET['filter_specialization'] ) ? absint( $_GET['filter_specialization'] ) : 0;
+        $current_city           = isset( $_GET['filter_city'] ) ? absint( $_GET['filter_city'] ) : 0;
         $current_sort           = isset( $_GET['sort'] ) ? sanitize_text_field( $_GET['sort'] ) : '';
         ?>
         <div class="form-filters">
             <form method="get" class="doctors-filters" action="<?php echo esc_url( get_post_type_archive_link( 'doctors' ) ); ?>">
 
-                <select name="specialization">
+                <select name="filter_specialization">
                     <option value="">
                         <?php esc_html_e( 'All specializations', 'doctors-theme' ); ?>
                     </option>
@@ -31,8 +31,8 @@ get_header();
                     if ( ! is_wp_error( $specializations ) && ! empty( $specializations ) ) :
                         foreach ( $specializations as $spec ) : ?>
 
-                            <option value="<?php echo esc_attr( $spec->slug ); ?>"
-                                <?php selected( $current_specialization, $spec->slug ); ?>>
+                            <option value="<?php echo esc_attr( $spec->term_id ); ?>"
+                                <?php selected( $current_specialization, $spec->term_id ); ?>>
                                 <?php echo esc_html( $spec->name ); ?>
                             </option>
 
@@ -41,7 +41,7 @@ get_header();
                 </select>
 
 
-                <select name="city">
+                <select name="filter_city">
                     <option value="">
                         <?php esc_html_e( 'All cities', 'doctors-theme' ); ?>
                     </option>
@@ -55,8 +55,8 @@ get_header();
                     if ( ! is_wp_error( $cities ) && ! empty( $cities ) ) :
                         foreach ( $cities as $city ) : ?>
 
-                            <option value="<?php echo esc_attr( $city->slug ); ?>"
-                                <?php selected( $current_city, $city->slug ); ?>>
+                            <option value="<?php echo esc_attr( $city->term_id ); ?>"
+                                <?php selected( $current_city, $city->term_id ); ?>>
                                 <?php echo esc_html( $city->name ); ?>
                             </option>
 
