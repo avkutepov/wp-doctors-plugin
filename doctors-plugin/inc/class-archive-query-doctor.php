@@ -19,6 +19,9 @@ class Doctors_Archive_Query {
         // Количество записей
         $query->set( 'posts_per_page', 9 );
 
+        // Фильтрация по таксономиям
+        $this->apply_taxonomy_filters( $query );
+
         // Сортировка
         $this->apply_sorting( $query );
     }
@@ -36,6 +39,39 @@ class Doctors_Archive_Query {
         return $query->is_post_type_archive( 'doctors' );
     }
 
+
+    private function apply_taxonomy_filters( \WP_Query $query ): void {
+
+        $tax_query = [];
+
+        // Фильтр по специализации
+        if ( ! empty( $_GET['filter_specialization'] ) ) {
+            $tax_query[] = [
+                'taxonomy' => 'specialization',
+                'field'    => 'term_id',
+                'terms'    => absint( $_GET['filter_specialization'] ),
+            ];
+        }
+
+        // Фильтр по городу
+        if ( ! empty( $_GET['filter_city'] ) ) {
+            $tax_query[] = [
+                'taxonomy' => 'city',
+                'field'    => 'term_id',
+                'terms'    => absint( $_GET['filter_city'] ),
+            ];
+        }
+
+        // Если есть фильтры, применяем их
+        if ( ! empty( $tax_query ) ) {
+            // Устанавливаем relation, если фильтров больше одного
+            if ( count( $tax_query ) > 1 ) {
+                $tax_query['relation'] = 'AND';
+            }
+
+            $query->set( 'tax_query', $tax_query );
+        }
+    }
 
     private function apply_sorting( \WP_Query $query ): void {
 
