@@ -7,81 +7,83 @@ get_header();
     <h1 class="archive-title">
         <?php post_type_archive_title(); ?>
     </h1>
+
+    <?php
+    // Санитизация GET параметров
+    $current_specialization = isset( $_GET['filter_specialization'] ) ? absint( $_GET['filter_specialization'] ) : 0;
+    $current_city           = isset( $_GET['filter_city'] ) ? absint( $_GET['filter_city'] ) : 0;
+    $current_sort           = isset( $_GET['sort'] ) ? sanitize_text_field( $_GET['sort'] ) : '';
+    ?>
+
+    <div class="form-filters">
+        <form method="get" class="doctors-filters" action="<?php echo esc_url( get_post_type_archive_link( 'doctors' ) ); ?>">
+
+            <select name="filter_specialization">
+                <option value="">
+                    <?php esc_html_e( 'All specializations', 'doctors-theme' ); ?>
+                </option>
+
+                <?php
+                $specializations = get_terms( [
+                    'taxonomy'   => 'specialization',
+                    'hide_empty' => false,
+                ] );
+
+                if ( ! is_wp_error( $specializations ) && ! empty( $specializations ) ) :
+                    foreach ( $specializations as $spec ) : ?>
+
+                        <option value="<?php echo esc_attr( $spec->term_id ); ?>"
+                            <?php selected( $current_specialization, $spec->term_id ); ?>>
+                            <?php echo esc_html( $spec->name ); ?>
+                        </option>
+
+                    <?php endforeach;
+                endif; ?>
+            </select>
+
+
+            <select name="filter_city">
+                <option value="">
+                    <?php esc_html_e( 'All cities', 'doctors-theme' ); ?>
+                </option>
+
+                <?php
+                $cities = get_terms( [
+                    'taxonomy'   => 'city',
+                    'hide_empty' => false,
+                ] );
+
+                if ( ! is_wp_error( $cities ) && ! empty( $cities ) ) :
+                    foreach ( $cities as $city ) : ?>
+
+                        <option value="<?php echo esc_attr( $city->term_id ); ?>"
+                            <?php selected( $current_city, $city->term_id ); ?>>
+                            <?php echo esc_html( $city->name ); ?>
+                        </option>
+
+                    <?php endforeach;
+                endif; ?>
+            </select>
+
+
+            <select name="sort">
+                <option value=""><?php esc_html_e( 'Default sorting', 'doctors-theme' ); ?></option>
+                <option value="rating" <?php selected( $current_sort, 'rating' ); ?>>
+                    <?php esc_html_e( 'By rating', 'doctors-theme' ); ?>
+                </option>
+                <option value="price" <?php selected( $current_sort, 'price' ); ?>>
+                    <?php esc_html_e( 'By price', 'doctors-theme' ); ?>
+                </option>
+                <option value="experience" <?php selected( $current_sort, 'experience' ); ?>>
+                    <?php esc_html_e( 'By experience', 'doctors-theme' ); ?>
+                </option>
+            </select>
+
+            <button type="submit"><?php esc_html_e( 'Apply filters', 'doctors-theme' ); ?></button>
+        </form>
+    </div>
+
     <?php if ( have_posts() ) : ?>
-        <?php
-        // Санитизация GET параметров
-        $current_specialization = isset( $_GET['filter_specialization'] ) ? absint( $_GET['filter_specialization'] ) : 0;
-        $current_city           = isset( $_GET['filter_city'] ) ? absint( $_GET['filter_city'] ) : 0;
-        $current_sort           = isset( $_GET['sort'] ) ? sanitize_text_field( $_GET['sort'] ) : '';
-        ?>
-        <div class="form-filters">
-            <form method="get" class="doctors-filters" action="<?php echo esc_url( get_post_type_archive_link( 'doctors' ) ); ?>">
-
-                <select name="filter_specialization">
-                    <option value="">
-                        <?php esc_html_e( 'All specializations', 'doctors-theme' ); ?>
-                    </option>
-
-                    <?php
-                    $specializations = get_terms( [
-                        'taxonomy'   => 'specialization',
-                        'hide_empty' => false,
-                    ] );
-
-                    if ( ! is_wp_error( $specializations ) && ! empty( $specializations ) ) :
-                        foreach ( $specializations as $spec ) : ?>
-
-                            <option value="<?php echo esc_attr( $spec->term_id ); ?>"
-                                <?php selected( $current_specialization, $spec->term_id ); ?>>
-                                <?php echo esc_html( $spec->name ); ?>
-                            </option>
-
-                        <?php endforeach;
-                    endif; ?>
-                </select>
-
-
-                <select name="filter_city">
-                    <option value="">
-                        <?php esc_html_e( 'All cities', 'doctors-theme' ); ?>
-                    </option>
-
-                    <?php
-                    $cities = get_terms( [
-                        'taxonomy'   => 'city',
-                        'hide_empty' => false,
-                    ] );
-
-                    if ( ! is_wp_error( $cities ) && ! empty( $cities ) ) :
-                        foreach ( $cities as $city ) : ?>
-
-                            <option value="<?php echo esc_attr( $city->term_id ); ?>"
-                                <?php selected( $current_city, $city->term_id ); ?>>
-                                <?php echo esc_html( $city->name ); ?>
-                            </option>
-
-                        <?php endforeach;
-                    endif; ?>
-                </select>
-
-
-                <select name="sort">
-                    <option value=""><?php esc_html_e( 'Default sorting', 'doctors-theme' ); ?></option>
-                    <option value="rating" <?php selected( $current_sort, 'rating' ); ?>>
-                        <?php esc_html_e( 'By rating', 'doctors-theme' ); ?>
-                    </option>
-                    <option value="price" <?php selected( $current_sort, 'price' ); ?>>
-                        <?php esc_html_e( 'By price', 'doctors-theme' ); ?>
-                    </option>
-                    <option value="experience" <?php selected( $current_sort, 'experience' ); ?>>
-                        <?php esc_html_e( 'By experience', 'doctors-theme' ); ?>
-                    </option>
-                </select>
-
-                <button type="submit"><?php esc_html_e( 'Apply filters', 'doctors-theme' ); ?></button>
-            </form>
-
-        </div>
 
         <div class="doctors-grid">
 
